@@ -2,6 +2,7 @@
 .gitignore
 .github
 .assetsignore
+.workbuddy
 wrangler.jsonc
 README.md
 LICENSE.md
