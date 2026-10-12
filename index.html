@@ -8,7 +8,9 @@
     <meta name="author" content="HY">
     <meta name="theme-color" content="#f3ede8">
     <meta name="color-scheme" content="light dark">
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23d98a2e'/%3E%3Ctext x='32' y='45' font-size='36' font-weight='700' text-anchor='middle' fill='%23fffef8' font-family='sans-serif'%3EH%3C/text%3E%3C/svg%3E">
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" href="favicon-192.png" type="image/png" sizes="192x192">
+    <link rel="apple-touch-icon" href="favicon-192.png">
     <script>
         /* 尽早应用主题，避免闪白 */
         (function () {
@@ -301,19 +303,16 @@
 
         .brand:hover { text-decoration: none; opacity: .88; }
 
-        .brand__mark {
-            display: grid;
-            place-items: center;
-            width: 2.25rem; height: 2.25rem;
-            border-radius: var(--radius-xl);
-            background: linear-gradient(140deg, var(--banner-1), var(--banner-2));
-            color: #3a2113;
-            font-family: var(--font-mono);
-            font-weight: 700;
-            font-size: .95rem;
-            letter-spacing: .02em;
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, .55), 0 4px 12px rgba(0, 0, 0, .25);
+        .brand__logo {
+            flex: 0 0 auto;
+            height: 2.35rem;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, .38));
+            transition: transform var(--dur-fast) var(--ease-out);
         }
+
+        .brand:hover .brand__logo { transform: scale(1.05); }
 
         .brand__text { display: flex; flex-direction: column; line-height: 1.15; }
         .brand__text b { font-family: var(--font-display); font-weight: 700; font-size: 1.02rem; letter-spacing: .01em; }
@@ -376,6 +375,8 @@
             background: var(--btn-regular-bg);
             border-color: var(--line-color);
         }
+
+        .navbar.is-scrolled .brand__logo { filter: drop-shadow(0 1px 4px rgba(0, 0, 0, .2)); }
 
         .navbar.is-scrolled .nav-link:hover,
         .navbar.is-scrolled .icon-btn:hover { background: var(--btn-regular-bg-hover); }
@@ -1312,7 +1313,7 @@
     <header class="navbar" id="navbar">
         <div class="navbar__inner">
             <a class="brand" href="./" aria-label="HY-图片混淆 首页">
-                <span class="brand__mark">HY</span>
+                <img class="brand__logo" src="logo.png" alt="" width="133" height="110" decoding="async">
                 <span class="brand__text">
                     <b>HY-图片混淆</b>
                     <i>Image Obfuscator</i>
