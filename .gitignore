@@ -1,0 +1,9 @@
+# WorkBuddy 工作区元数据（笔记 / 任务记录），不入库、不发布
+.workbuddy/
+
+# 编辑器 / 系统垃圾文件
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
