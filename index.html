@@ -20,6 +20,16 @@
             } catch (e) {}
         })();
     </script>
+    <!--
+        Umami 统计：无 Cookie、不采集图片内容，只记录页面访问与按钮动作。
+        data-domains 限死生产域名，避免本地 / 预览环境把数据打进去。
+        data-performance 顺带收 Core Web Vitals（不想要可以删掉这一项）。
+    -->
+    <script defer
+            src="https://umami.9ll.uk/script.js"
+            data-website-id="1658fff8-6c11-4fba-8a2e-9e2b5ba1b865"
+            data-domains="hunxi.9ll.uk"
+            data-performance="true"></script>
     <style>
         /* ============================================================
            字体：与 9LL.UK 博客同源（自托管 woff2 子集），中文回落到系统字体
@@ -1391,23 +1401,23 @@
                 <div class="action-buttons">
                     <div class="action-button-row">
                         <div class="button-group">
-                            <button id="enc" class="action-button action-button--solid">混淆图片</button>
-                            <button id="enc-multiple" class="circle-button" title="连续混淆一次" aria-label="连续混淆">+</button>
+                            <button id="enc" class="action-button action-button--solid" data-umami-event="encrypt">混淆图片</button>
+                            <button id="enc-multiple" class="circle-button" title="连续混淆一次" aria-label="连续混淆" data-umami-event="encrypt-multiple">+</button>
                         </div>
                         <div class="button-group">
-                            <button id="dec" class="action-button">解混淆</button>
-                            <button id="dec-multiple" class="circle-button" title="连续解混淆一次" aria-label="连续解混淆">−</button>
+                            <button id="dec" class="action-button" data-umami-event="decrypt">解混淆</button>
+                            <button id="dec-multiple" class="circle-button" title="连续解混淆一次" aria-label="连续解混淆" data-umami-event="decrypt-multiple">−</button>
                         </div>
                     </div>
 
                     <div class="action-button-row">
-                        <button id="re" class="action-button">还原原图</button>
+                        <button id="re" class="action-button" data-umami-event="restore">还原原图</button>
                     </div>
 
                     <div class="action-button-row">
-                        <button id="download" class="action-button action-button--solid">下载图片</button>
-                        <button id="view" class="action-button">查看图片</button>
-                        <button id="clear" class="action-button action-button--danger">清除图片</button>
+                        <button id="download" class="action-button action-button--solid" data-umami-event="download">下载图片</button>
+                        <button id="view" class="action-button" data-umami-event="view">查看图片</button>
+                        <button id="clear" class="action-button action-button--danger" data-umami-event="clear">清除图片</button>
                     </div>
                 </div>
             </section>
@@ -1613,6 +1623,25 @@
             if (loader) obs.observe(loader, { attributes: true, attributeFilter: ['style'] });
         }
         refreshStatus();
+
+        /* ── Umami：只补一个属性表达不了的动作 ─────────
+           按钮点击走按钮上的 data-umami-event（Umami 脚本自己绑定）。
+           「选到图」是文件框的 change，不是点击，所以在这里单独记一次；
+           禁用统计时 window.umami 不存在，静默跳过。 */
+        function trackEvent(name, data) {
+            try {
+                if (window.umami && typeof window.umami.track === 'function') {
+                    window.umami.track(name, data);
+                }
+            } catch (e) {}
+        }
+
+        var fileInput = document.getElementById('ipt');
+        if (fileInput) {
+            fileInput.addEventListener('change', function () {
+                if (fileInput.files && fileInput.files.length) trackEvent('image-selected');
+            });
+        }
     })();
     </script>
 
