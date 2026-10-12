@@ -1027,6 +1027,17 @@
 
         .dev-info-value a { color: var(--primary-ink); }
 
+        /* 上游原型：低调带过，不抢主署名 */
+        .dev-info-item--muted { border-bottom: 0; margin-top: .1rem; }
+        .dev-info-item--muted .dev-info-label,
+        .dev-info-item--muted .dev-info-value {
+            font-size: .78rem;
+            font-weight: 500;
+            color: var(--text-3);
+        }
+        .dev-info-item--muted .dev-info-value a { color: var(--text-3); text-decoration: underline; text-underline-offset: .22em; }
+        .dev-info-item--muted:hover { background: transparent; }
+
         .dev-info-tool {
             margin-top: .75rem;
             padding: .55rem .7rem;
@@ -1501,6 +1512,10 @@
                         <div class="dev-info-label">GitHub</div>
                         <div class="dev-info-value"><a href="https://github.com/hy4962" target="_blank" rel="noopener">@hy4962</a></div>
                     </div>
+                    <div class="dev-info-item dev-info-item--muted">
+                        <div class="dev-info-label">原型</div>
+                        <div class="dev-info-value"><a href="https://github.com/Gascy37/grimenc" target="_blank" rel="noopener">星彩 · grimenc</a></div>
+                    </div>
                     <div class="dev-info-tool">图片混淆和解混淆工具˃ʍ˂</div>
                 </div>
             </details>
@@ -1508,7 +1523,7 @@
 
             <footer class="site-foot reveal" style="--d:620ms">
                 <p>© 2026 HY · <a href="https://www.9ll.uk/" target="_blank" rel="noopener">9LL.UK</a></p>
-                <p>界面基于 <a href="https://github.com/Gascy37/grimenc" target="_blank" rel="noopener">Gascy 的 grimenc</a>（MIT）重构，算法逻辑保持原样</p>
+                <p>界面重构版 · 算法沿用上游 <a href="https://github.com/Gascy37/grimenc" target="_blank" rel="noopener">grimenc</a>（MIT）</p>
             </footer>
 
         </div>
